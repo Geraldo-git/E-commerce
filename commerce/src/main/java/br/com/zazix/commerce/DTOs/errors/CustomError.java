@@ -1,4 +1,4 @@
-package br.com.zazix.commerce.DTOs;
+package br.com.zazix.commerce.DTOs.errors;
 
 import java.time.Instant;
 

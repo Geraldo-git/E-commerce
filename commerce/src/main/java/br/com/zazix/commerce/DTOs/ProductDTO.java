@@ -2,12 +2,18 @@ package br.com.zazix.commerce.DTOs;
 
 import br.com.zazix.commerce.entities.Product;
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.*;
 
 public class ProductDTO {
 
     private Long id;
+    @Size(min =3 , max = 80, message="Nome deve ter entre 3 e 80 caracteres")
+    @NotEmpty(message = "Campo requerido")
     private String name;
+    @Size(min =10, message = "Descricao minima 10 caracteres")
+    @NotBlank(message = "Campo requerido")
     private String description;
+    @Positive(message = "O preço deve ser positivo")
     private Double price;
     private String imgUrl;
 
