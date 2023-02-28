@@ -18,7 +18,7 @@ public class CategoryController {
     private CategoryService service;
 
     @GetMapping
-    public ResponseEntity<Category> findAll(){
+    public ResponseEntity<List<Category>> findAll(){
         List<Category> list = new ArrayList<>();
         return null;
     }
