@@ -1,8 +1,9 @@
 package br.com.zazix.commerce.DTOs.errors;
 
+import java.io.Serializable;
 import java.time.Instant;
 
-public class CustomError {
+public class CustomError implements Serializable {
 
     private Instant timestamp;
     private Integer status;

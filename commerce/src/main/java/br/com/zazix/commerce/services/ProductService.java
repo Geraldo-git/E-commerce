@@ -61,7 +61,9 @@ public class ProductService {
     public void delete(Long id) {
         try {
             repository.deleteById(id);
-        }catch(DataIntegrityViolationException e){
+        }catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException("Id não encontrado!");
+        } catch (DataIntegrityViolationException e) {
             throw new DatabaseException("Violação de integridade!");
         }
     }
