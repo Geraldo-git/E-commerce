@@ -59,18 +59,13 @@ INSERT INTO tb_person (name, email, phone, birth_date) VALUES ('Maria Brown', 'm
 INSERT INTO tb_person (name, email, phone, birth_date) VALUES ('Alex Green', 'alex@gmail.com', '977777777',   '1987-12-13');
 INSERT INTO tb_person (name, email, phone, birth_date) VALUES ('Antonio Carlos', 'antonio@gmail.com', '966666666', '1987-12-13');
 
-INSERT INTO tb_permissions (description) VALUES ('ADMIN'),
-INSERT INTO tb_permissions (description) VALUES ('MANAGER'),
-INSERT INTO tb_permissions (description) VALUES ('COMMON_USER');
-
-
 INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
 INSERT INTO tb_role (authority) VALUES ('ROLE_CLIENT');
 
-INSERT INTO tb_users (user_name, full_name, password, account_non_expired, account_non_locked, credentials_non_expired, enabled) VALUES('leandro', 'Leandro Costa', '19bbf735b27066f2f145e602624e1b24a3fbc54cd5dfd3143fc5feea6bdee9e139ca7332d4806b9f', b'1', b'1', b'1', b'1'),
-INSERT INTO tb_users (user_name, full_name, password, account_non_expired, account_non_locked, credentials_non_expired, enabled) VALUES ('flavio', 'Flavio Costa', '75ec349c1b0ef4ee7b249d0b83ae4861853f3aa77bce8c4b15f28cd43c6424ab4f29df431831bb0d', b'1', b'1', b'1', b'1');
-
-
+INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 2);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 2);
 
 INSERT INTO tb_order (moment, status, client_id) VALUES (TIMESTAMP WITH TIME ZONE '2022-07-25T13:00:00Z', 1, 1);
 INSERT INTO tb_order (moment, status, client_id) VALUES (TIMESTAMP WITH TIME ZONE '2022-07-29T15:50:00Z', 3, 2);

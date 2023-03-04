@@ -1,39 +1,39 @@
-package br.com.zazix.commerce.DTOs;
+package br.com.zazix.commerce.entities;
 
-import br.com.zazix.commerce.entities.User;
+import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-public class UserDTO {
+@Entity
+@Table(name = "tb_person")
+public class Person implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(unique = true)
     private String email;
     private String phone;
     private LocalDate birthDate;
 
-    Set<RoleDTO> roles = new HashSet<>();
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 
-    public UserDTO() {
+    public Person() {
     }
 
-    public UserDTO(Long id, String name, String email, String phone, LocalDate birthDate) {
+    public Person(Long id, String name, String email, String phone, LocalDate birthDate, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.birthDate = birthDate;
-    }
-
-    public UserDTO(User entity ) {
-        id = entity.getId();
-        name = entity.getName();
-        email = entity.getEmail();
-        phone = entity.getPhone();
-        birthDate = entity.getBirthDate();
-        entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
     }
 
     public Long getId() {
@@ -76,7 +76,8 @@ public class UserDTO {
         this.birthDate = birthDate;
     }
 
-    public Set<RoleDTO> getRoles() {
-        return roles;
+
+    public List<Order> getOrders() {
+        return orders;
     }
 }

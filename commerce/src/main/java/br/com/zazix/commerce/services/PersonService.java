@@ -1,11 +1,11 @@
 package br.com.zazix.commerce.services;
 
 import br.com.zazix.commerce.DTOs.RoleDTO;
-import br.com.zazix.commerce.DTOs.UserDTO;
+import br.com.zazix.commerce.DTOs.PersonDTO;
 import br.com.zazix.commerce.entities.Role;
-import br.com.zazix.commerce.entities.User;
+import br.com.zazix.commerce.entities.Person;
 import br.com.zazix.commerce.repositories.RoleRepository;
-import br.com.zazix.commerce.repositories.UserRepository;
+import br.com.zazix.commerce.repositories.PersonRepository;
 import br.com.zazix.commerce.services.exceptions.DatabaseException;
 import br.com.zazix.commerce.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
@@ -19,44 +19,44 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UserService {
+public class PersonService {
 
     @Autowired
-    private UserRepository repository;
+    private PersonRepository repository;
     @Autowired
     private RoleRepository roleRepository;
 
     @Transactional(readOnly = true)
-    public UserDTO findById(Long id) {
-        User user = repository.findById(id).orElseThrow(
+    public PersonDTO findById(Long id) {
+        Person user = repository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Produto não encontrado!"));
-        return new UserDTO(user);
+        return new PersonDTO(user);
     }
 
     @Transactional(readOnly = true)
-    public Page<UserDTO> findAll(Pageable pageable) {
-        Page<User> list = repository.findAll(pageable);
+    public Page<PersonDTO> findAll(Pageable pageable) {
+        Page<Person> list = repository.findAll(pageable);
         //return list.stream().map(x -> new ProductDTO(x)).collect(Collectors.toList());
-        return list.map(x -> new UserDTO(x));
+        return list.map(x -> new PersonDTO(x));
     }
 
     @Transactional
-    public UserDTO insert(UserDTO dto) {
+    public PersonDTO insert(PersonDTO dto) {
 
-        User entity = new User();
+        Person entity = new Person();
         copyDtoToEntity(dto, entity);
         entity = repository.save(entity);
 
-        return new UserDTO(entity);
+        return new PersonDTO(entity);
     }
 
     @Transactional
-    public UserDTO update(Long id, UserDTO dto) {
+    public PersonDTO update(Long id, PersonDTO dto) {
         try {
-            User entity = repository.getReferenceById(id);
+            Person entity = repository.getReferenceById(id);
             copyDtoToEntity(dto, entity);
             entity = repository.save(entity);
-            return new UserDTO(entity);
+            return new PersonDTO(entity);
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException("Produto não encontrado!");
         }
@@ -74,17 +74,13 @@ public class UserService {
     }
 
 
-    private void copyDtoToEntity(UserDTO dto, User entity) {
+    private void copyDtoToEntity(PersonDTO dto, Person entity) {
 
         entity.setName(dto.getName());
         entity.setEmail(dto.getEmail());
         entity.setPhone(dto.getPhone());
         entity.setBirthDate(dto.getBirthDate());
 
-        entity.getRoles().clear();
-        for(RoleDTO roleDTO : dto.getRoles()) {
-            Role role = roleRepository.getReferenceById(roleDTO.getId());
-            entity.getRoles().add(role);
-        }
+
     }
 }
