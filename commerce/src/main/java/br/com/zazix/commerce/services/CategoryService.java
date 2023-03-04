@@ -1,22 +1,18 @@
 package br.com.zazix.commerce.services;
 
 import br.com.zazix.commerce.DTOs.CategoryDTO;
-import br.com.zazix.commerce.DTOs.ProductDTO;
 import br.com.zazix.commerce.entities.Category;
 import br.com.zazix.commerce.repositories.CategoryRepository;
 import br.com.zazix.commerce.services.exceptions.DatabaseException;
 import br.com.zazix.commerce.services.exceptions.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 

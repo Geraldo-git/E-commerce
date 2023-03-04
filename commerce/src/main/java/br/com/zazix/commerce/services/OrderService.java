@@ -1,14 +1,10 @@
 package br.com.zazix.commerce.services;
 
 import br.com.zazix.commerce.DTOs.OrderDTO;
-import br.com.zazix.commerce.DTOs.ProductDTO;
 import br.com.zazix.commerce.entities.Order;
-import br.com.zazix.commerce.entities.Product;
 import br.com.zazix.commerce.repositories.OrderRepository;
-import br.com.zazix.commerce.repositories.ProductRepository;
 import br.com.zazix.commerce.services.exceptions.DatabaseException;
 import br.com.zazix.commerce.services.exceptions.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -17,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityNotFoundException;
 
 @Service
 public class OrderService {
@@ -55,7 +53,7 @@ public class OrderService {
             copyDtoToEntity(dto, entity);
             entity = repository.save(entity);
             return new OrderDTO(entity);
-        } catch (EntityNotFoundException e) {
+        } catch ( EntityNotFoundException e) {
             throw new ResourceNotFoundException("Produto não encontrado!");
         }
     }

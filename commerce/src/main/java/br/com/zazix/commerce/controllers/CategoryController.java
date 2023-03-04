@@ -1,17 +1,15 @@
 package br.com.zazix.commerce.controllers;
 
 import br.com.zazix.commerce.DTOs.CategoryDTO;
-import br.com.zazix.commerce.DTOs.ProductDTO;
-import br.com.zazix.commerce.entities.Category;
 import br.com.zazix.commerce.services.CategoryService;
-import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,13 +20,13 @@ public class CategoryController {
     private CategoryService service;
 
     @GetMapping
-    public ResponseEntity<List<CategoryDTO>> findAll(){
-       List<CategoryDTO> list = service.findAll();
+    public ResponseEntity<List<CategoryDTO>> findAll() {
+        List<CategoryDTO> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<CategoryDTO> findById(@PathVariable Long id){
+    public ResponseEntity<CategoryDTO> findById(@PathVariable Long id) {
         CategoryDTO dto = service.findById(id);
         return ResponseEntity.ok().body(dto);
     }
@@ -36,7 +34,7 @@ public class CategoryController {
     @PostMapping
     public ResponseEntity<CategoryDTO> create(@RequestBody CategoryDTO dto) {
         dto = service.insert(dto);
-        URI uri= ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }

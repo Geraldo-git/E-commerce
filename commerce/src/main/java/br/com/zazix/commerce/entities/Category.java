@@ -1,7 +1,6 @@
 package br.com.zazix.commerce.entities;
 
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
@@ -60,6 +59,7 @@ public class Category implements Serializable {
     public void prePersist() {
         createdAt = Instant.now();
     }
+
     @PreUpdate
     public void preUpdate() {
         updatedAt = Instant.now();

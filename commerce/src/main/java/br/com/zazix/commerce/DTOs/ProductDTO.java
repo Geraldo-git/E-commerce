@@ -1,8 +1,11 @@
 package br.com.zazix.commerce.DTOs;
 
 import br.com.zazix.commerce.entities.Product;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.*;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 public class ProductDTO {
 

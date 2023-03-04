@@ -8,7 +8,6 @@ import br.com.zazix.commerce.repositories.RoleRepository;
 import br.com.zazix.commerce.repositories.PersonRepository;
 import br.com.zazix.commerce.services.exceptions.DatabaseException;
 import br.com.zazix.commerce.services.exceptions.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -17,6 +16,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityNotFoundException;
 
 @Service
 public class PersonService {

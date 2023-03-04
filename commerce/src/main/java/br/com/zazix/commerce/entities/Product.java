@@ -1,6 +1,6 @@
 package br.com.zazix.commerce.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.time.Instant;
 import java.util.HashSet;

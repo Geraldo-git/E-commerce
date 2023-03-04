@@ -1,7 +1,8 @@
 package br.com.zazix.commerce.entities;
 
-import jakarta.persistence.*;
 
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
