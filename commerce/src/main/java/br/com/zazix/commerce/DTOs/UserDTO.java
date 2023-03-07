@@ -1,10 +1,10 @@
 package br.com.zazix.commerce.DTOs;
 
-import br.com.zazix.commerce.entities.Person;
+import br.com.zazix.commerce.entities.User;
 
 import java.time.LocalDate;
 
-public class PersonDTO {
+public class UserDTO {
 
     private Long id;
     private String name;
@@ -13,10 +13,10 @@ public class PersonDTO {
     private LocalDate birthDate;
 
 
-    public PersonDTO() {
+    public UserDTO() {
     }
 
-    public PersonDTO(Long id, String name, String email, String phone, LocalDate birthDate) {
+    public UserDTO(Long id, String name, String email, String phone, LocalDate birthDate) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -24,7 +24,7 @@ public class PersonDTO {
         this.birthDate = birthDate;
     }
 
-    public PersonDTO(Person entity ) {
+    public UserDTO(User entity ) {
         id = entity.getId();
         name = entity.getName();
         email = entity.getEmail();
